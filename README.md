@@ -1,254 +1,301 @@
-# 图像生成提示词管理系统 - 前端
+# 图像生成提示词管理系统前端 V3.0
 
-这是一个基于 Gradio 的前端应用，用于管理图像生成AI的提示词。该应用提供了一个用户友好的Web界面，可以与后端Go API进行交互。
+基于Gradio的图像生成提示词管理系统Web前端界面。
 
-## 功能特性
+## 🆕 V3.0 新功能
 
-### 🎨 核心功能
-- **提示词管理**: 创建、查看、编辑、删除提示词
-- **图片上传**: 支持上传图片并与提示词关联
-- **标签系统**: 创建和管理标签，支持标签搜索
-- **高级搜索**: 根据关键词、标签、模型等多维度搜索
-- **统计信息**: 实时显示系统统计数据和最近活动
+### 1. 多图片上传支持
+- **参考图片上传**：支持上传多张参考图片用于风格参考
+- **输出图片上传**：支持上传最终生成的结果图片
+- **图片管理优化**：在列表中显示图片数量信息
 
-### 📊 界面功能
-1. **仪表板**: 系统概览和统计信息
-2. **提示词管理**: 
-   - 创建新提示词（支持图片上传）
-   - 查看提示词列表（支持筛选）
-   - 编辑和删除提示词
-   - 重复检查功能
-3. **标签管理**: 
-   - 查看所有标签
-   - 创建新标签
-   - 删除标签
-   - 搜索标签
-4. **高级搜索**: 根据标签组合搜索提示词
+### 2. AI智能生成功能
+- **智能分析**：基于上传的图片和基础提示词，AI自动生成完整描述
+- **一键生成**：自动填充负面提示词、风格描述、使用场景等所有字段
+- **人工审核**：生成结果支持人工审核和修改后保存
+- **独立标签页**：专门的"智能生成"标签页，优化用户体验
 
-## 安装和运行
+### 3. 界面优化
+- **版本标识**：更新为V3.0版本标识
+- **功能提示**：首页添加新功能介绍
+- **表格优化**：增加输出图和参考图数量显示列
 
-### 环境要求
-- Python 3.8+
-- 后端API服务运行在 `http://localhost:8080`
-- Git Bash (Windows) 或其他 Unix shell
+## 主要特性
 
-### 快速开始
+- 🎨 **提示词管理**：创建、查看、编辑、删除提示词
+- 🤖 **AI智能生成**：上传图片自动生成完整提示词描述
+- 📸 **多图片上传**：支持参考图和输出图分别上传
+- 🏷️ **标签系统**：灵活的标签管理和标签搜索
+- 🔍 **高级搜索**：多维度搜索和筛选功能
+- 📊 **数据统计**：实时统计面板显示系统状态
+- 🎯 **重复检测**：检查提示词是否重复
+- 💻 **响应式设计**：适配各种屏幕尺寸
 
-#### 方法一：使用启动脚本 (推荐)
-1. **进入项目目录**
-   ```bash
-   cd D:\projects\pythonProject\imgGeneratePrompts_front
-   ```
+## 技术栈
 
-2. **配置环境变量 (首次运行)**
-   ```bash
-   # 复制环境变量模板文件
-   cp .env.example .env
-   
-   # 根据需要编辑 .env 文件
-   # 大多数情况下默认配置即可使用
-   ```
-
-3. **运行启动脚本**
-   ```bash
-   # 使用 Git Bash 或其他 Unix shell
-   bash start.sh
-   
-   # 或者给脚本添加执行权限后直接运行
-   chmod +x start.sh
-   ./start.sh
-   ```
-
-#### 方法二：手动启动
-1. **进入项目目录**
-   ```bash
-   cd D:\projects\pythonProject\imgGeneratePrompts_front
-   ```
-
-2. **创建虚拟环境 (推荐)**
-   ```bash
-   python -m venv .venv
-   source .venv/Scripts/activate  # Git Bash
-   # 或者在 Windows CMD: .venv\Scripts\activate
-   ```
-
-3. **安装依赖**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **配置环境变量**
-   ```bash
-   cp .env.example .env
-   # 编辑 .env 文件根据需要修改配置
-   ```
-
-5. **启动应用**
-   ```bash
-   python app.py
-   ```
-
-6. **访问应用**
-   打开浏览器访问: `http://localhost:7860`
+- **框架**: Gradio 4.0+
+- **语言**: Python 3.8+
+- **HTTP客户端**: Requests
+- **数据处理**: Pandas
+- **图像处理**: PIL (Pillow)
 
 ## 项目结构
 
 ```
 imgGeneratePrompts_front/
-├── app.py              # 主应用文件
-├── api_client.py       # API客户端
-├── config.py           # 配置文件
-├── requirements.txt    # 依赖包列表
-├── .env.example        # 环境变量模板
-├── .gitignore          # Git忽略文件
-├── start.sh            # Git Bash 启动脚本
-├── start.bat           # Windows 启动脚本（废弃）
-└── README.md          # 项目说明
+├── app.py              # 主应用程序
+├── api_client.py       # API客户端封装
+├── config.py          # 配置文件
+├── requirements.txt   # 依赖包列表
+├── .env              # 环境变量配置
+├── README.md         # 项目说明文档
+└── QUICKSTART.md     # 快速开始指南
 ```
+
+## 界面功能模块
+
+### 1. 仪表板
+- 系统统计信息显示
+- 最近提示词列表
+- API连接状态检查
+
+### 2. 提示词管理
+- **智能生成**（新增）
+  - 上传输出图和参考图
+  - 输入基础提示词
+  - AI自动生成完整描述
+  - 审核并保存结果
+- **创建提示词**
+  - 支持多图片上传
+  - 完整字段填写
+  - 标签关联
+- **查看提示词**
+  - 列表展示
+  - 多条件筛选
+  - 分页浏览
+- **编辑提示词**
+  - 加载详情
+  - 更新信息
+  - 删除操作
+
+### 3. 标签管理
+- 查看所有标签
+- 创建新标签
+- 删除标签
+- 搜索标签
+
+### 4. 高级搜索
+- 按标签搜索提示词
+- 组合条件搜索
+
+## 安装与运行
+
+### 1. 环境要求
+
+- Python 3.8+
+- pip 包管理器
+
+### 2. 克隆项目
+
+```bash
+git clone <repository-url>
+cd imgGeneratePrompts_front
+```
+
+### 3. 创建虚拟环境（推荐）
+
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# Linux/Mac
+source .venv/bin/activate
+```
+
+### 4. 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. 配置环境变量
+
+复制环境变量模板：
+```bash
+cp .env.example .env
+```
+
+编辑 `.env` 文件，配置后端API地址：
+```env
+API_BASE_URL=http://localhost:8080
+API_PREFIX=http://localhost:8080/api/v1
+GRADIO_SERVER_NAME=127.0.0.1
+GRADIO_SERVER_PORT=7860
+GRADIO_SHARE=False
+```
+
+### 6. 运行应用
+
+```bash
+python app.py
+```
+
+访问 `http://localhost:7860` 使用系统
+
+## 使用指南
+
+### 智能生成功能使用流程
+
+1. **进入智能生成标签页**
+   - 点击"提示词管理" → "智能生成"
+
+2. **上传图片**
+   - 上传输出结果图（必须）
+   - 上传参考图片（可选，支持多张）
+
+3. **输入基础信息**
+   - 输入核心提示词
+   - 选择使用的模型（可选）
+
+4. **生成描述**
+   - 点击"智能生成"按钮
+   - 等待AI分析完成
+
+5. **审核结果**
+   - 查看生成的各项描述
+   - 根据需要修改内容
+
+6. **保存提示词**
+   - 确认无误后点击"保存提示词"
+   - 系统自动创建新的提示词记录
+
+### 多图片上传使用说明
+
+1. **创建提示词时**
+   - 可上传多张参考图片
+   - 可上传一张输出图片
+
+2. **查看提示词时**
+   - 列表显示图片数量信息
+   - 详情页显示所有图片URL
+
+## API接口对接
+
+前端通过 `api_client.py` 与后端API通信，主要接口包括：
+
+### 提示词相关
+- `create_prompt()` - 创建提示词
+- `upload_and_create_prompt_multi()` - 多图片上传创建（新增）
+- `analyze_prompt()` - AI智能分析（新增）
+- `get_prompts()` - 获取列表
+- `update_prompt()` - 更新提示词
+- `delete_prompt()` - 删除提示词
+
+### 标签相关
+- `create_tag()` - 创建标签
+- `get_all_tags()` - 获取所有标签
+- `delete_tag()` - 删除标签
+- `search_tags()` - 搜索标签
 
 ## 配置说明
 
 ### 环境变量配置
 
-项目使用 `.env` 文件进行环境配置。**请注意：`.env` 文件包含敏感信息，已被添加到 `.gitignore` 中，不会被提交到版本控制。**
+| 变量名 | 描述 | 默认值 |
+|--------|------|--------|
+| API_BASE_URL | 后端API基础URL | http://localhost:8080 |
+| API_PREFIX | API前缀路径 | http://localhost:8080/api/v1 |
+| GRADIO_SERVER_NAME | Gradio服务器地址 | 127.0.0.1 |
+| GRADIO_SERVER_PORT | Gradio服务器端口 | 7860 |
+| GRADIO_SHARE | 是否创建公共链接 | False |
+| DEFAULT_PAGE_SIZE | 默认分页大小 | 10 |
 
-#### 配置步骤：
-1. 复制环境变量模板：
+## V3.0升级指南
+
+如果您从V2.0升级到V3.0：
+
+1. **更新代码**
    ```bash
-   cp .env.example .env
+   git pull origin master
    ```
 
-2. 根据需要编辑 `.env` 文件中的配置项。
+2. **更新依赖**
+   ```bash
+   pip install -r requirements.txt --upgrade
+   ```
 
-#### 主要配置项：
-- `API_BASE_URL`: 后端API地址（默认: http://localhost:8080）
-- `GRADIO_SERVER_NAME`: Gradio服务器主机名（默认: 0.0.0.0）
-- `GRADIO_SERVER_PORT`: Gradio服务器端口（默认: 7860）
-- `GRADIO_SHARE`: 是否启用Gradio分享链接（默认: False）
+3. **清理缓存**
+   ```bash
+   rm -rf __pycache__/
+   ```
 
-#### 常用配置场景：
-```env
-# 开发环境（默认）
-API_BASE_URL=http://localhost:8080
-GRADIO_SERVER_NAME=0.0.0.0
-GRADIO_SERVER_PORT=7860
-GRADIO_SHARE=False
-
-# 生产环境示例
-API_BASE_URL=http://your-backend-server:8080
-GRADIO_SERVER_NAME=0.0.0.0
-GRADIO_SERVER_PORT=7860
-GRADIO_SHARE=False
-
-# 测试环境（启用公网分享）
-GRADIO_SHARE=True
-```
-
-## API接口对接
-
-本前端应用完整对接了以下后端API接口：
-
-### 提示词相关接口
-- `POST /api/v1/prompts/` - 创建提示词
-- `POST /api/v1/prompts/upload` - 上传图片并创建提示词
-- `GET /api/v1/prompts/` - 获取提示词列表
-- `GET /api/v1/prompts/public` - 获取公开提示词
-- `GET /api/v1/prompts/recent` - 获取最近提示词
-- `GET /api/v1/prompts/stats` - 获取统计信息
-- `GET /api/v1/prompts/search/tags` - 根据标签搜索
-- `GET /api/v1/prompts/check-duplicate` - 检查重复
-- `GET /api/v1/prompts/:id` - 获取单个提示词
-- `PUT /api/v1/prompts/:id` - 更新提示词
-- `DELETE /api/v1/prompts/:id` - 删除提示词
-
-### 标签相关接口
-- `POST /api/v1/tags/` - 创建标签
-- `GET /api/v1/tags/` - 获取所有标签
-- `GET /api/v1/tags/search` - 搜索标签
-- `GET /api/v1/tags/stats` - 获取标签统计
-- `GET /api/v1/tags/:id` - 获取单个标签
-- `DELETE /api/v1/tags/:id` - 删除标签
-
-### 系统接口
-- `GET /health` - 健康检查
-- `GET /db-status` - 数据库状态检查
-
-## 使用指南
-
-### 1. 创建提示词
-1. 进入"提示词管理" → "创建提示词"标签页
-2. 填写必要信息（提示词文本为必填项）
-3. 可选择上传相关图片
-4. 添加标签（用逗号分隔）
-5. 点击"创建提示词"按钮
-
-### 2. 管理提示词
-1. 在"查看提示词"标签页中浏览所有提示词
-2. 使用筛选器进行搜索
-3. 在"编辑提示词"标签页中修改或删除提示词
-
-### 3. 标签管理
-1. 在"标签管理"模块中查看所有标签
-2. 创建新标签或删除不需要的标签
-3. 使用搜索功能快速找到特定标签
-
-### 4. 高级搜索
-1. 使用"高级搜索"功能根据标签组合查找提示词
-2. 支持多标签搜索（用逗号分隔）
-
-## 重要文件说明
-
-### 环境配置文件
-- **`.env.example`**: 环境变量模板文件，包含所有可配置项的说明
-- **`.env`**: 实际的环境配置文件（由用户创建，不提交到Git）
-- **`.gitignore`**: Git忽略文件，防止敏感文件被提交
-
-### 启动脚本
-- **`start.sh`**: Git Bash/Unix Shell 启动脚本（推荐使用）
-- **`start.bat`**: Windows 批处理文件（已废弃，建议删除）
-
-### 为什么使用 Git Bash？
-1. **跨平台兼容性**: Shell 脚本可以在 Linux/macOS/Windows 上运行
-2. **更好的环境管理**: 支持虚拟环境和环境变量
-3. **现代开发流程**: 与现代Python开发流程一致
+4. **重启服务**
+   ```bash
+   python app.py
+   ```
 
 ## 故障排除
 
-### 连接问题
-1. 确认后端API服务正在运行
-2. 检查API地址配置是否正确
-3. 查看浏览器控制台是否有错误信息
+### 常见问题
 
-### 图片上传问题
-1. 确认图片格式支持（jpg, jpeg, png, gif, bmp）
-2. 检查图片大小是否超过限制（默认10MB）
-3. 确认后端uploads目录权限正确
+1. **无法连接到后端API**
+   - 检查后端服务是否运行
+   - 验证API_BASE_URL配置是否正确
+   - 确认防火墙设置
 
-### 界面问题
-1. 刷新浏览器页面
-2. 清除浏览器缓存
-3. 检查网络连接
+2. **图片上传失败**
+   - 检查文件大小限制
+   - 确认文件格式支持
+   - 验证上传目录权限
 
-### Git Bash 相关问题
-1. **权限问题**: 如果遇到权限拒绝，运行 `chmod +x start.sh`
-2. **脚本不运行**: 确保使用 `bash start.sh` 命令
-3. **路径问题**: 确保在项目根目录下运行命令
-4. **环境变量问题**: 检查 `.env` 文件是否存在和配置正确
+3. **AI生成功能无响应**
+   - 确认后端AI服务配置
+   - 检查网络连接
+   - 查看后端日志
 
-## 开发说明
+## 开发指南
 
 ### 添加新功能
-1. 在 `api_client.py` 中添加新的API调用方法
-2. 在 `app.py` 中添加对应的界面组件和事件处理
-3. 更新配置文件（如需要）
 
-### 自定义样式
-可以在 `app.py` 中的 `custom_css` 变量中添加自定义CSS样式。
+1. 在 `app.py` 中添加新的界面组件
+2. 在 `api_client.py` 中添加对应的API方法
+3. 更新配置文件（如需要）
+4. 测试功能完整性
+
+### 代码规范
+
+- 使用类型提示
+- 添加函数文档字符串
+- 遵循PEP 8规范
+- 适当的错误处理
+
+## 贡献指南
+
+欢迎提交Issue和Pull Request！
 
 ## 许可证
 
-本项目遵循 MIT 许可证。
+MIT License
 
-## 支持
+## 更新日志
 
-如有问题或建议，请联系开发团队。
+### V3.0.0 (2024-01)
+- ✨ 新增AI智能生成功能
+- ✨ 支持多图片上传
+- ✨ 界面优化和功能增强
+- 🐛 修复已知问题
+- 📝 更新文档
+
+### V2.0.0
+- 初始版本发布
+- 基础CRUD功能
+- 标签系统
+- 搜索功能
+
+## 联系方式
+
+如有问题或建议，请提交Issue或联系开发团队。
+
+---
+
+**注意**: 确保后端服务已正确配置并运行，否则前端功能将无法正常使用。
